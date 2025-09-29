@@ -1,0 +1,19 @@
+typedef enum{one,two,three}tr_type;
+class transaction;
+  bit[7:0] data;
+  int id;
+endclass
+
+module array_of_objects;
+  initial begin
+    transaction tr[tr_type];
+    tr[one] = new();
+    tr[two] = new();
+    tr[three]= new();
+  foreach(tr[i]) begin
+    tr[i].data = i*i;
+    tr[i].id =i+1;
+    $display("tr[%0s].data = %0d,tr[%0s].id = %0d",i.name,tr[i].data,i.name,tr[i].id);
+  end
+  end
+endmodule
